@@ -86,3 +86,9 @@ jobs:
       - name: Deploy with IaC
         run: |
           echo "This step deploys sandbox with IaC"
+
+  call-reusable-workflow:
+    if: ${{ contains(github.event.pull_request.labels.*.name,'sandbox') }}
+    uses: ./.github/workflows/sandbox-reuseable.yml
+    with:
+      username: Lewis
