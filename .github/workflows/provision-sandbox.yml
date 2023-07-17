@@ -58,7 +58,7 @@ jobs:
           echo "this should prepare a new environment"
 
   deploy-sandbox:
-    if: ${{ contains(github.event.pull_request.labels.*.name,'sandbox') && github.event.pull_request.merged }}
+    if: ${{ contains(github.event.pull_request.labels.*.name,'sandbox') }}
     name: 'Deploy Sandbox'
     runs-on: ubuntu-latest
     needs: [prepare-env]
