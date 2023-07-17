@@ -36,7 +36,7 @@ jobs:
       - name: 'Remove Sandbox Environment : ${{ matrix.srvs }}'
         if: ${{ contains(github.event.pull_request.labels.*.name,'sandbox') }}
         run: |
-          echo "this should clean up ${{ matrix.srvs }} environment"
+          echo "this should clean up ${{ matrix.srvs }} sandbox environment"
 
   prepare-env:
     if: ${{ contains(github.event.pull_request.labels.*.name,'sandbox') && github.event.pull_request.merged == false }}
@@ -55,7 +55,7 @@ jobs:
         run: |
           matrix=`echo "output from prepare-env job"`
           echo "::set-output name=matrix::$(echo $matrix)"
-          echo "this should prepare a new environment"
+          echo "this should prepare a new environment for sandbox"
 
   deploy-sandbox:
     if: ${{ contains(github.event.pull_request.labels.*.name,'sandbox') }}
@@ -91,4 +91,4 @@ jobs:
     if: ${{ contains(github.event.pull_request.labels.*.name,'sandbox') }}
     uses: ./.github/workflows/sandbox-reuseable.yml
     with:
-      username: Lewis
+      username: Spiral
